@@ -55,13 +55,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 
 			<form action="#" method="post" class="auth-form">
 				<label for="name">Full name</label>
-				<input id="name" name="name" type="text" placeholder="John Doe" required />
+				<input id="name" name="name" type="text" placeholder="Randula Berugoda" required />
 
 				<label for="reg-email">Email</label>
 				<input id="reg-email" name="email" type="email" placeholder="you@example.com" required />
 
                 <label for="reg-username">Username</label>
-				<input id="reg-username" name="username" type="text" placeholder="john_doe" required />
+				<input id="reg-username" name="username" type="text" placeholder="randula123" required />
 
 				<label for="reg-password">Password</label>
 				<input id="reg-password" name="password" type="password" placeholder="Create a password" required />
@@ -80,11 +80,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 
 		<section class="panel art-panel">
 			<h2>Simple Signup UI</h2>
-			<p>After backend integration, this page can validate fields and create new user accounts.</p>
+			<p>After completing the form, this page can validate fields and create new user accounts.</p>
 			<ul>
 				<li>Common design language</li>
 				<li>Minimal and readable layout</li>
-				<li>Easy to plug in backend</li>
 			</ul>
 		</section>
 	</main>

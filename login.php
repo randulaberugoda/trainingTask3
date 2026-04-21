@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<section class="panel form-panel">
 			<p class="eyebrow">Frontend sample</p>
 			<h1>Welcome back</h1>
-			<p class="lead">Sign in with your backend credentials when your logic is ready.</p>
+			<p class="lead">Sign in with your backend credentials.</p>
 
 			<?php if ($errorMessage !== ''): ?>
 				<p style="margin-top: 10px; color: #c62828; font-weight: 500;"><?php echo htmlspecialchars($errorMessage); ?></p>
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		<section class="panel art-panel">
 			<h2>Simple Login UI</h2>
-			<p>This page is frontend only. Connect your backend authentication in the form action and validation.</p>
+			<p>This  is Login page. xxxxxx xxxx xxxxxxx xxxxxxxxxxxxx xx xxx xxxx xxxxx xxx xxxxxxxxx.</p>
 			<ul>
 				<li>Shared navbar across pages</li>
 				<li>Light and clean design</li>
