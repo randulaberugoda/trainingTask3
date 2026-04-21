@@ -2,27 +2,28 @@
 
 ## Project Overview
 
-Training Task 3 is a beginner-friendly PHP + MySQL authentication project built with XAMPP.
+Training Task 3 is a beginner friendly PHP + MySQL authentication / login/ logout project.
 It includes:
 
-- User registration
-- User login
-- Session-based welcome page protection
+- User registration with password hashing 
+- User login input validation and password verify
+- Session based welcome page protection
 - Logout that destroys the session and redirects to login
+
 
 The project uses:
 
-- PHP (procedural style)
-- MySQL (via mysqli)
+- PHP 
+- MySQL 
 - HTML/CSS frontend
 
 ## Project Structure
 
 - `register.php` - Signup form and registration logic call
 - `login.php` - Login form and login handling
-- `welcome.php` - Protected page (requires active login session)
+- `welcome.php` - Protected pagen from sessions
 - `logout.php` - Session destroy + redirect to login
-- `function.inc.php` - Reusable helper/auth functions
+- `function.inc.php` - Reusable helper , authentication and msges functions
 - `config.php` - Database connection
 - `assets/style.css` - Styling
 
@@ -30,14 +31,14 @@ The project uses:
 
 ### 1. Prerequisites
 
-- XAMPP installed (Apache + MySQL)
+- XAMPP installed (Apache and MySQL)
 - Web browser
 
 ### 2. Place Project in htdocs
 
-Copy this folder to:
+Copy folder to:
 
-`C:/xampp/htdocs/TraningTask3`
+`C:/xampp/htdocs`
 
 ### 3. Start Services
 
@@ -54,7 +55,7 @@ Open phpMyAdmin and create a database named:
 
 ### 5. Create users Table
 
-Run this SQL in phpMyAdmin:
+Run SQL in phpMyAdmin or import table
 
 ```sql
 CREATE TABLE users (
@@ -72,10 +73,10 @@ Open in browser:
 
 `http://localhost/TraningTask3/register.php`
 
-You can then:
+ Then:
 
 1. Register a new user
-2. Login with email or username + password
+2. Login with email and + password
 3. Access the protected welcome page
 4. Logout to clear session and redirect
 
