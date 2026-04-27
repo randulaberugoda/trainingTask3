@@ -1,87 +1,16 @@
-# Training Task 3
+# React + Vite
 
-## Project Overview
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Training Task 3 is a beginner friendly PHP + MySQL authentication / login/ logout project.
-It includes:
+Currently, two official plugins are available:
 
-- User registration with password hashing 
-- User login input validation and password verify
-- Session based welcome page protection
-- Logout that destroys the session and redirects to login
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
+## React Compiler
 
-The project uses:
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- PHP 
-- MySQL 
-- HTML/CSS frontend
+## Expanding the ESLint configuration
 
-## Project Structure
-
-- `register.php` - Signup form and registration logic call
-- `login.php` - Login form and login handling
-- `welcome.php` - Protected pagen from sessions
-- `logout.php` - Session destroy + redirect to login
-- `function.inc.php` - Reusable helper , authentication and msges functions
-- `config.php` - Database connection
-- `assets/style.css` - Styling
-
-## Setup and Run
-
-### 1. Prerequisites
-
-- XAMPP installed (Apache and MySQL)
-- Web browser
-
-### 2. Place Project in htdocs
-
-Copy folder to:
-
-`C:/xampp/htdocs`
-
-### 3. Start Services
-
-Open XAMPP Control Panel and start:
-
-- Apache
-- MySQL
-
-### 4. Create Database
-
-Open phpMyAdmin and create a database named:
-
-`phpproject01`
-
-### 5. Create users Table
-
-Run SQL in phpMyAdmin or import table
-
-```sql
-CREATE TABLE users (
-	usersId INT AUTO_INCREMENT PRIMARY KEY,
-	usersName VARCHAR(128) NOT NULL,
-	usersEmail VARCHAR(128) NOT NULL UNIQUE,
-	usersUid VARCHAR(128) NOT NULL UNIQUE,
-	usersPwd VARCHAR(255) NOT NULL
-);
-```
-
-### 6. Run the Project
-
-Open in browser:
-
-`http://localhost/TraningTask3/register.php`
-
- Then:
-
-1. Register a new user
-2. Login with email and + password
-3. Access the protected welcome page
-4. Logout to clear session and redirect
-
-## Tutorial Used
-
-YouTube tutorial:
-
-https://www.youtube.com/watch?v=gCo6JqGMi30
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
