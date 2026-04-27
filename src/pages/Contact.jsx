@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { MapPin, Phone, Mail, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-// ─── DATA ────────────────────────────────────────────────────────────────────
+// DATA 
 
 const contactInfo = [
   {
@@ -37,14 +37,14 @@ const faqs = [
   },
 ]
 
-// ─── ANIMATION ───────────────────────────────────────────────────────────────
+// ANIMATION 
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 }
 
-// ─── COMPONENT ───────────────────────────────────────────────────────────────
+//COMPONENT 
 
 function Contact() {
   const [openFaq, setOpenFaq] = useState(null)
@@ -59,13 +59,13 @@ function Contact() {
 
   const [errors, setErrors] = useState({})
 
-  // ── Update form state on input change
+  // Update form state on input change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
     setErrors({ ...errors, [e.target.name]: '' })
   }
 
-  // ── Validate form fields
+  // Validate form fields
   const validate = () => {
     const newErrors = {}
 
@@ -92,7 +92,7 @@ function Contact() {
     return newErrors
   }
 
-  // ── Handle form submit
+  // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault()
     const validationErrors = validate()
@@ -110,7 +110,7 @@ function Contact() {
   return (
     <div className="bg-[#0A0F2C] text-white">
 
-      {/* ── HERO SECTION ── */}
+      {/* HERO SECTION */}
       <section className="min-h-[50vh] flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 relative overflow-hidden">
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
@@ -137,11 +137,11 @@ function Contact() {
         </motion.div>
       </section>
 
-      {/* ── FORM + INFO SECTION ── */}
+      {/* FORM + INFO SECTION */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
 
-          {/* ── Contact Form ── */}
+          {/* Contact Form */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -243,7 +243,7 @@ function Contact() {
             </form>
           </motion.div>
 
-          {/* ── Contact Info + Map ── */}
+          {/* Contact Info + Map*/}
           <motion.div
             variants={fadeUp}
             initial="hidden"

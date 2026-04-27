@@ -3,27 +3,27 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { ArrowRight, Shield, Check, CreditCard } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-// ─── ANIMATION ───────────────────────────────────────────────────────────────
+//  ANIMATION 
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 }
 
-// ─── COMPONENT ───────────────────────────────────────────────────────────────
+// COMPONENT 
 
 function Checkout() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // ── Receive plan data from Pricing page
+  // Receive plan data from Pricing page
   const plan = location.state || {
     planName: 'Pro',
     price: 79,
     billing: 'monthly',
   }
 
-  // ── Form state
+  // Form state
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -39,16 +39,16 @@ function Checkout() {
   const [passwordError, setPasswordError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  // ── Generate random order ID
+  // Generate random order ID
   const orderId = `LMS-2025-${Math.floor(10000 + Math.random() * 90000)}`
 
-  // ── Update form on change
+  // Update form on change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
     setErrors({ ...errors, [e.target.name]: '' })
   }
 
-  // ── Validate form
+  // Validate form
   const validate = () => {
     const newErrors = {}
 
@@ -69,7 +69,7 @@ function Checkout() {
     return newErrors
   }
 
-  // ── Handle payment submit
+  // Handle payment submit
   const handlePayment = async (e) => {
     e.preventDefault()
     const validationErrors = validate()
@@ -107,7 +107,7 @@ function Checkout() {
   return (
     <div className="bg-[#0A0F2C] text-white min-h-screen">
 
-      {/* ── HEADER ── */}
+      {/* HEADER */}
       <div className="pt-28 pb-12 text-center px-6">
         <motion.div
           variants={fadeUp}
@@ -124,11 +124,11 @@ function Checkout() {
         </motion.div>
       </div>
 
-      {/* ── MAIN LAYOUT ── */}
+      {/*  MAIN LAYOUT */}
       <section className="pb-24 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
 
-          {/* ── LEFT — Billing Form ── */}
+          {/*LEFT — Billing Form */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -252,7 +252,7 @@ function Checkout() {
                 )}
               </div>
 
-              {/* ── Account Creation Checkbox ── */}
+              {/* Account Creation Checkbox  */}
               <div className="bg-indigo-600/10 border border-indigo-500/20 rounded-xl p-4">
                 <label className="flex items-start gap-3 cursor-pointer">
                   <input
@@ -296,7 +296,7 @@ function Checkout() {
                 )}
               </div>
 
-              {/* ── Submit Button ── */}
+              {/*Submit Button */}
               <button
                 type="submit"
                 disabled={loading}
@@ -321,7 +321,7 @@ function Checkout() {
             </form>
           </motion.div>
 
-          {/* ── RIGHT — Order Summary ── */}
+          {/*RIGHT — Order Summary  */}
           <motion.div
             variants={fadeUp}
             initial="hidden"

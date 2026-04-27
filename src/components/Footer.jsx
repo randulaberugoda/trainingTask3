@@ -3,7 +3,7 @@ import {
   Mail, Phone, MapPin
 } from 'lucide-react'
 
-// ─── DATA ────────────────────────────────────────────────────────────────────
+//data
 
 const footerLinks = [
   {
@@ -48,17 +48,16 @@ const contactInfo = [
   { icon: <Mail size={15} />, text: 'hello@luminalsystems.com' },
 ]
 
-// ─── COMPONENT ───────────────────────────────────────────────────────────────
-
+//component
 function Footer() {
   return (
     <footer className="bg-[#060A1A] text-white border-t border-white/10">
 
-      {/* ── MAIN FOOTER CONTENT ── */}
+      {/* MAIN FOOTER CONTENT */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
 
-          {/* ── Brand Column ── */}
+          {/* Brand Column */}
           <div className="lg:col-span-2">
 
             {/* Logo */}
@@ -128,7 +127,7 @@ function Footer() {
 
 
 
-      {/* ── BOTTOM BAR ── */}
+      {/*  BOTTOM BAR */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
           <p>© 2025 Luminal Systems (Pvt) Ltd. All rights reserved.</p>
