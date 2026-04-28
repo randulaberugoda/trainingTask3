@@ -5,7 +5,7 @@ import {
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-// DATA
+// data
 const services = [
   {
     icon: <Zap size={40} className="text-cyan-400" />,
@@ -84,23 +84,23 @@ const process = [
   },
 ]
 
-// ANIMATION 
+// animation
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 }
 
-//  COMPONENT
+// component
 
 function Services() {
   return (
     <div className="bg-[#0A0F2C] text-white">
 
-      {/* HERO SECTION  */}
+      {/* hero section */}
       <section className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 relative overflow-hidden">
 
-        {/* Background glow */}
+        {/* background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
 
         <motion.div
@@ -125,7 +125,7 @@ function Services() {
         </motion.div>
       </section>
 
-      {/* SERVICE CARDS */}
+      {/* service cards */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service) => (
@@ -137,16 +137,16 @@ function Services() {
               viewport={{ once: true }}
               className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 hover:border-cyan-400/40 transition-all duration-300 flex flex-col"
             >
-              {/* Icon */}
+              {/* icon */}
               <div className="mb-5">{service.icon}</div>
 
-              {/* Title & Desc */}
+              {/* title and desc */}
               <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
                 {service.desc}
               </p>
 
-              {/* Feature List */}
+              {/* feature list */}
               <ul className="flex flex-col gap-3 mb-8 flex-1">
                 {service.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-sm text-gray-300">
@@ -158,7 +158,7 @@ function Services() {
                 ))}
               </ul>
 
-              {/* CTA Button */}
+              {/* cta button */}
               <Link
                 to="/contact"
                 className="mt-auto flex items-center gap-2 text-cyan-400 font-semibold text-sm hover:gap-3 transition-all duration-200"
@@ -170,7 +170,7 @@ function Services() {
         </div>
       </section>
 
-      {/* PROCESS SECTION */}
+      {/* process section */}
       <section className="py-24 px-6 bg-white/5">
         <div className="max-w-6xl mx-auto">
 
@@ -197,12 +197,12 @@ function Services() {
                 viewport={{ once: true }}
                 className="relative bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 text-center hover:border-cyan-400/40 transition-all duration-300"
               >
-                {/* Step number */}
+                {/* step number */}
                 <span className="text-5xl font-extrabold text-white/5 absolute top-4 right-4">
                   {item.step}
                 </span>
 
-                {/* Icon */}
+                {/* icon */}
                 <div className="w-14 h-14 rounded-full bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center mx-auto mb-4">
                   {item.icon}
                 </div>
@@ -210,7 +210,7 @@ function Services() {
                 <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
 
-                {/* Connector arrow between steps */}
+                {/* connector arrow between steps */}
                 {index < process.length - 1 && (
                   <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 text-indigo-400 z-10">
                     <ArrowRight size={20} />
@@ -222,7 +222,7 @@ function Services() {
         </div>
       </section>
 
-      {/* BOTTOM CTA */}
+      {/* bottom cta */}
       <section className="py-24 px-6">
         <motion.div
           variants={fadeUp}

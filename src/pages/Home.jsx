@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Zap, BarChart3, Shield, Star } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-//  DATA 
+// data
 
 const stats = [
   { value: '500+', label: 'Clients Worldwide' },
@@ -47,23 +47,23 @@ const testimonials = [
   },
 ]
 
-// ANIMATION 
+// animation
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 }
 
-//COMPONENT 
+// component
 
 function Home() {
   return (
     <div className="bg-[#0A0F2C] text-white">
 
-      {/* HERO SECTION */}
+      {/* hero section */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 relative overflow-hidden">
 
-        {/* Background glow */}
+        {/* background glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
 
         <motion.div
@@ -72,12 +72,12 @@ function Home() {
           animate="visible"
           className="relative z-10 max-w-4xl"
         >
-          {/* Badge */}
+          {/* badge */}
           <span className="inline-block bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 tracking-wider uppercase">
             AI-Powered Business Automation
           </span>
 
-          {/* Headline */}
+          {/* headline */}
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
             Automate Smarter.{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
@@ -85,13 +85,13 @@ function Home() {
             </span>
           </h1>
 
-          {/* Subheading */}
+          {/* subheading */}
           <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
             Luminal Systems gives your business the power to automate workflows,
             visualize data, and scale all from one intelligent platform.
           </p>
 
-          {/* CTA Buttons */}
+          {/* cta buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/pricing"
@@ -109,7 +109,7 @@ function Home() {
         </motion.div>
       </section>
 
-      {/* STATS BAR  */}
+      {/* stats bar */}
       <section className="border-y border-white/10 bg-white/5 backdrop-blur-sm py-12 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat) => (
@@ -127,11 +127,11 @@ function Home() {
         </div>
       </section>
 
-      {/* FEATURES SECTION */}
+      {/* features section */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
 
-          {/* Section heading */}
+          {/* section heading */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -147,7 +147,7 @@ function Home() {
             </p>
           </motion.div>
 
-          {/* Feature Cards */}
+          {/* feature cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature) => (
               <motion.div
@@ -167,7 +167,7 @@ function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS SECTION*/}
+      {/* testimonials section */}
       <section className="py-24 px-6 bg-white/5">
         <div className="max-w-6xl mx-auto">
 
@@ -192,7 +192,7 @@ function Home() {
                 viewport={{ once: true }}
                 className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8"
               >
-                {/* Stars */}
+                {/* stars */}
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
@@ -211,7 +211,7 @@ function Home() {
         </div>
       </section>
 
-      {/*  FINAL CTA SECTION */}
+      {/* final cta section */}
       <section className="py-24 px-6">
         <motion.div
           variants={fadeUp}

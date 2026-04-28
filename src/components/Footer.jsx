@@ -3,7 +3,7 @@ import {
   Mail, Phone, MapPin
 } from 'lucide-react'
 
-//data
+// data
 
 const footerLinks = [
   {
@@ -48,30 +48,30 @@ const contactInfo = [
   { icon: <Mail size={15} />, text: 'hello@luminalsystems.com' },
 ]
 
-//component
+// component
 function Footer() {
   return (
     <footer className="bg-[#060A1A] text-white border-t border-white/10">
 
-      {/* MAIN FOOTER CONTENT */}
+      {/* main footer content */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
 
-          {/* Brand Column */}
+          {/* brand column */}
           <div className="lg:col-span-2">
 
-            {/* Logo */}
+            {/* logo */}
             <Link to="/" className="text-2xl font-extrabold tracking-tight">
               Luminal<span className="text-cyan-400">.</span>
             </Link>
 
-            {/* Tagline */}
+            {/* tagline */}
             <p className="text-gray-400 text-sm leading-relaxed mt-4 max-w-xs">
               Empowering businesses through intelligent automation and
               data-driven insights. Built for growth. Designed for simplicity.
             </p>
 
-            {/* Contact Info */}
+            {/* contact info */}
             <div className="flex flex-col gap-3 mt-6">
               {contactInfo.map((item) => (
                 <div
@@ -86,7 +86,7 @@ function Footer() {
               ))}
             </div>
 
-            {/* Social Icons */}
+            {/* social icons */}
             <div className="flex gap-3 mt-6">
               {socials.map((social) => (
                 <a
@@ -101,7 +101,7 @@ function Footer() {
             </div>
           </div>
 
-          {/* Link Columns */}
+          {/* link columns */}
           {footerLinks.map((column) => (
             <div key={column.heading}>
               <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-5">
@@ -127,7 +127,7 @@ function Footer() {
 
 
 
-      {/*  BOTTOM BAR */}
+      {/* bottom bar */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
           <p>© 2025 Luminal Systems (Pvt) Ltd. All rights reserved.</p>

@@ -3,27 +3,27 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { ArrowRight, Shield, Check, CreditCard } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-//  ANIMATION 
+// animation
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 }
 
-// COMPONENT 
+// component
 
 function Checkout() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // Receive plan data from Pricing page
+  // receive plan data from pricing page
   const plan = location.state || {
     planName: 'Pro',
     price: 79,
     billing: 'monthly',
   }
 
-  // Form state
+  // form state
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -39,16 +39,16 @@ function Checkout() {
   const [passwordError, setPasswordError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  // Generate random order ID
+  // generate random order id
   const orderId = `LMS-2025-${Math.floor(10000 + Math.random() * 90000)}`
 
-  // Update form on change
+  // update form on change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
     setErrors({ ...errors, [e.target.name]: '' })
   }
 
-  // Validate form
+  // validate form
   const validate = () => {
     const newErrors = {}
 
@@ -69,7 +69,7 @@ function Checkout() {
     return newErrors
   }
 
-  // Handle payment submit
+  // handle payment submit
   const handlePayment = async (e) => {
     e.preventDefault()
     const validationErrors = validate()
@@ -86,8 +86,8 @@ function Checkout() {
 
     setLoading(true)
 
-    // Simulate payment processing delay
-    // Later you will replace this with real PayHere integration
+    // simulate payment processing delay
+    // later you will replace this with real payhere integration
     setTimeout(() => {
       setLoading(false)
       navigate('/thank-you', {
@@ -107,7 +107,7 @@ function Checkout() {
   return (
     <div className="bg-[#0A0F2C] text-white min-h-screen">
 
-      {/* HEADER */}
+      {/* header */}
       <div className="pt-28 pb-12 text-center px-6">
         <motion.div
           variants={fadeUp}
@@ -124,11 +124,11 @@ function Checkout() {
         </motion.div>
       </div>
 
-      {/*  MAIN LAYOUT */}
+      {/* main layout */}
       <section className="pb-24 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
 
-          {/*LEFT — Billing Form */}
+          {/* left billing form */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -140,7 +140,7 @@ function Checkout() {
 
             <form onSubmit={handlePayment} className="flex flex-col gap-5" noValidate>
 
-              {/* Full Name */}
+              {/* full name */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">Full Name</label>
                 <input
@@ -158,7 +158,7 @@ function Checkout() {
                 )}
               </div>
 
-              {/* Email */}
+              {/* email */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">Email Address</label>
                 <input
@@ -176,7 +176,7 @@ function Checkout() {
                 )}
               </div>
 
-              {/* Phone */}
+              {/* phone */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">Phone Number</label>
                 <input
@@ -194,7 +194,7 @@ function Checkout() {
                 )}
               </div>
 
-              {/* Company (optional) */}
+              {/* company optional */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">
                   Company Name <span className="text-gray-600">(optional)</span>
@@ -209,7 +209,7 @@ function Checkout() {
                 />
               </div>
 
-              {/* Address */}
+              {/* address */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">Billing Address</label>
                 <input
@@ -227,7 +227,7 @@ function Checkout() {
                 )}
               </div>
 
-              {/* Country */}
+              {/* country */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">Country</label>
                 <select
@@ -252,7 +252,7 @@ function Checkout() {
                 )}
               </div>
 
-              {/* Account Creation Checkbox  */}
+              {/* account creation checkbox */}
               <div className="bg-indigo-600/10 border border-indigo-500/20 rounded-xl p-4">
                 <label className="flex items-start gap-3 cursor-pointer">
                   <input
@@ -271,7 +271,7 @@ function Checkout() {
                   </div>
                 </label>
 
-                {/* Password field — only shows if checkbox is checked */}
+                {/* password field shows when checkbox is checked */}
                 {createAccount && (
                   <div className="mt-4">
                     <label className="text-sm text-gray-400 mb-1 block">
@@ -296,7 +296,7 @@ function Checkout() {
                 )}
               </div>
 
-              {/*Submit Button */}
+              {/* submit button */}
               <button
                 type="submit"
                 disabled={loading}
@@ -321,7 +321,7 @@ function Checkout() {
             </form>
           </motion.div>
 
-          {/*RIGHT — Order Summary  */}
+          {/* right order summary */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -330,11 +330,11 @@ function Checkout() {
             className="flex flex-col gap-6"
           >
 
-            {/* Order Summary Card */}
+            {/* order summary card */}
             <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8">
               <h2 className="text-xl font-bold mb-6">Order Summary</h2>
 
-              {/* Plan */}
+              {/* plan */}
               <div className="flex justify-between items-center mb-4">
                 <div>
                   <p className="font-semibold text-white">{plan.planName} Plan</p>
@@ -350,7 +350,7 @@ function Checkout() {
 
               <div className="border-t border-white/10 my-4" />
 
-              {/* What's included */}
+              {/* what is included */}
               <p className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-medium">
                 What is included
               </p>
@@ -372,7 +372,7 @@ function Checkout() {
 
               <div className="border-t border-white/10 my-4" />
 
-              {/* Total */}
+              {/* total */}
               <div className="flex justify-between items-center">
                 <span className="text-gray-400 text-sm">Total due today</span>
                 <span className="text-xl font-extrabold text-cyan-400">
@@ -381,7 +381,7 @@ function Checkout() {
               </div>
             </div>
 
-            {/* Security Badge */}
+            {/* security badge */}
             <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 flex items-start gap-4">
               <div className="w-10 h-10 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center flex-shrink-0">
                 <Shield size={18} className="text-green-400" />
@@ -394,7 +394,7 @@ function Checkout() {
               </div>
             </div>
 
-            {/* Order ID */}
+            {/* order id */}
             <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6">
               <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">
                 Your Order ID

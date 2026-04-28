@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Check, ArrowRight, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-//  DATA 
+// data
 const plans = [
   {
     name: 'Basic',
@@ -79,21 +79,21 @@ const faqs = [
   },
 ]
 
-//  ANIMATION 
+// animation
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 }
 
-//  COMPONENT 
+// component
 
 function Pricing() {
   const [yearly, setYearly] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
   const navigate = useNavigate()
 
-  // When user clicks Buy Now pass plan data to checkout page
+  // when user clicks buy now pass plan data to checkout page
   const handleBuyNow = (plan) => {
     navigate('/checkout', {
       state: {
@@ -107,7 +107,7 @@ function Pricing() {
   return (
     <div className="bg-[#0A0F2C] text-white">
 
-      {/* HERO SECTION */}
+      {/* hero section */}
       <section className="min-h-[50vh] flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 relative overflow-hidden">
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
@@ -134,13 +134,13 @@ function Pricing() {
         </motion.div>
       </section>
 
-      {/* TOGGLE */}
+      {/* toggle */}
       <div className="flex items-center justify-center gap-4 pb-12">
         <span className={`text-sm font-medium ${!yearly ? 'text-white' : 'text-gray-400'}`}>
           Monthly
         </span>
 
-        {/* Toggle Switch */}
+        {/* toggle switch */}
         <button
           onClick={() => setYearly(!yearly)}
           className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${
@@ -158,7 +158,7 @@ function Pricing() {
           Yearly
         </span>
 
-        {/* Save badge */}
+        {/* save badge */}
         {yearly && (
           <span className="bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full">
             Save 20%
@@ -166,7 +166,7 @@ function Pricing() {
         )}
       </div>
 
-      {/* PRICING CARDS */}
+      {/* pricing cards */}
       <section className="pb-24 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {plans.map((plan) => (
@@ -182,7 +182,7 @@ function Pricing() {
                   : 'bg-white/5 border border-white/10 backdrop-blur-md hover:border-cyan-400/40'
               }`}
             >
-              {/* Best Value Badge */}
+              {/* best value badge */}
               {plan.highlight && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                   <span className="bg-cyan-400 text-[#0A0F2C] text-xs font-extrabold px-4 py-1.5 rounded-full flex items-center gap-1">
@@ -191,13 +191,13 @@ function Pricing() {
                 </div>
               )}
 
-              {/* Plan Name & Desc */}
+              {/* plan name and desc */}
               <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
               <p className={`text-sm mb-6 ${plan.highlight ? 'text-indigo-200' : 'text-gray-400'}`}>
                 {plan.desc}
               </p>
 
-              {/* Price */}
+              {/* price */}
               <div className="mb-8">
                 <span className="text-5xl font-extrabold">
                   ${yearly ? plan.yearlyPrice : plan.monthlyPrice}
@@ -212,7 +212,7 @@ function Pricing() {
                 )}
               </div>
 
-              {/* Features */}
+              {/* features */}
               <ul className="flex flex-col gap-3 mb-8 flex-1">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-sm">
@@ -230,7 +230,7 @@ function Pricing() {
                 ))}
               </ul>
 
-              {/* Buy Now Button */}
+              {/* buy now button */}
               <button
                 onClick={() => handleBuyNow(plan)}
                 className={`w-full py-3 rounded-full font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 ${
@@ -246,7 +246,7 @@ function Pricing() {
         </div>
       </section>
 
-      {/*  TRUSTED BY  */}
+      {/* trusted by */}
       <section className="py-16 px-6 border-y border-white/10 bg-white/5">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-500 text-sm uppercase tracking-widest mb-8 font-medium">
@@ -265,7 +265,7 @@ function Pricing() {
         </div>
       </section>
 
-      {/* FAQ SECTION  */}
+      {/* faq section */}
       <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto">
 
@@ -293,7 +293,7 @@ function Pricing() {
                 viewport={{ once: true }}
                 className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl overflow-hidden"
               >
-                {/* Question */}
+                {/* question */}
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
                   className="w-full flex justify-between items-center px-6 py-5 text-left"
@@ -306,7 +306,7 @@ function Pricing() {
                   </span>
                 </button>
 
-                {/* Answer */}
+                {/* answer */}
                 {openFaq === index && (
                   <div className="px-6 pb-5 text-gray-400 text-sm leading-relaxed border-t border-white/10 pt-4">
                     {faq.answer}

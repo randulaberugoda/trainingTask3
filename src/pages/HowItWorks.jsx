@@ -5,7 +5,7 @@ import {
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-//  DATA 
+// data
 
 const steps = [
   {
@@ -76,7 +76,7 @@ const benefits = [
   },
 ]
 
-// ANIMATION 
+// animation
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -93,16 +93,16 @@ const fadeRight = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
 }
 
-//  COMPONENT 
+// component
 
 function HowItWorks() {
   return (
     <div className="bg-[#0A0F2C] text-white">
 
-      {/* HERO SECTION  */}
+      {/* hero section */}
       <section className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 relative overflow-hidden">
 
-        {/* Background glow */}
+        {/* background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
 
         <motion.div
@@ -127,11 +127,11 @@ function HowItWorks() {
         </motion.div>
       </section>
 
-      {/* STEPS SECTION  */}
+      {/* steps section */}
       <section className="py-24 px-6">
         <div className="max-w-5xl mx-auto flex flex-col gap-8 relative">
 
-          {/* Vertical line */}
+          {/* vertical line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-indigo-600/20 hidden md:block" />
 
           {steps.map((step, index) => (
@@ -145,26 +145,26 @@ function HowItWorks() {
                 step.side === 'right' ? 'md:flex-row-reverse' : ''
               }`}
             >
-              {/* Content Card */}
+              {/* content card */}
               <div className="md:w-[45%] bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 hover:border-cyan-400/40 transition-all duration-300">
 
-                {/* Step badge */}
+                {/* step badge */}
                 <span className="text-xs font-bold text-indigo-400 tracking-widest uppercase mb-3 block">
                   Step {step.step}
                 </span>
 
-                {/* Icon + Title */}
+                {/* icon and title */}
                 <div className="flex items-center gap-3 mb-4">
                   {step.icon}
                   <h3 className="text-xl font-bold">{step.title}</h3>
                 </div>
 
-                {/* Description */}
+                {/* description */}
                 <p className="text-gray-400 text-sm leading-relaxed mb-5">
                   {step.desc}
                 </p>
 
-                {/* Bullet points */}
+                {/* bullet points */}
                 <ul className="flex flex-col gap-2">
                   {step.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-2 text-sm text-gray-300">
@@ -175,19 +175,19 @@ function HowItWorks() {
                 </ul>
               </div>
 
-              {/* Center Circle with step number */}
+              {/* center circle with step number */}
               <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-indigo-600 border-4 border-[#0A0F2C] items-center justify-center z-10">
                 <span className="text-white font-bold text-sm">{step.step}</span>
               </div>
 
-              {/* Empty space for opposite side */}
+              {/* empty space for opposite side */}
               <div className="hidden md:block md:w-[45%]" />
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* WHY LUMINAL BENEFITS */}
+      {/* why luminal benefits */}
       <section className="py-24 px-6 bg-white/5">
         <div className="max-w-6xl mx-auto">
 
@@ -225,7 +225,7 @@ function HowItWorks() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
+      {/* final cta */}
       <section className="py-24 px-6">
         <motion.div
           variants={fadeUp}

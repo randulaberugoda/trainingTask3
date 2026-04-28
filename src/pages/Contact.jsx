@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { MapPin, Phone, Mail, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-// DATA 
-
 const contactInfo = [
   {
     icon: <MapPin size={22} className="text-cyan-400" />,
@@ -37,18 +35,15 @@ const faqs = [
   },
 ]
 
-// ANIMATION 
-
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 }
 
-//COMPONENT 
-
 function Contact() {
-  const [openFaq, setOpenFaq] = useState(null)
+  const [openFaq, setOpenFaq]     = useState(null)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false) // ← NEW
 
   const [form, setForm] = useState({
     name: '',
@@ -59,41 +54,30 @@ function Contact() {
 
   const [errors, setErrors] = useState({})
 
-  // Update form state on input change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
     setErrors({ ...errors, [e.target.name]: '' })
   }
 
-  // Validate form fields
   const validate = () => {
     const newErrors = {}
-
-    if (!form.name.trim()) {
-      newErrors.name = 'Name is required.'
-    }
-
+    if (!form.name.trim()) newErrors.name = 'Name is required.'
     if (!form.email.trim()) {
       newErrors.email = 'Email is required.'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       newErrors.email = 'Please enter a valid email address.'
     }
-
-    if (!form.subject.trim()) {
-      newErrors.subject = 'Subject is required.'
-    }
-
+    if (!form.subject.trim()) newErrors.subject = 'Subject is required.'
     if (!form.message.trim()) {
       newErrors.message = 'Message is required.'
     } else if (form.message.trim().length < 20) {
       newErrors.message = 'Message must be at least 20 characters.'
     }
-
     return newErrors
   }
 
-  // Handle form submit
-  const handleSubmit = (e) => {
+  // ── NEW handleSubmit — actually calls PHP ──
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const validationErrors = validate()
 
@@ -102,19 +86,39 @@ function Contact() {
       return
     }
 
-    // For now just show success — PHP backend will be connected later
-    setSubmitted(true)
-    setForm({ name: '', email: '', subject: '', message: '' })
+    setSubmitting(true)
+
+    try {
+      const response = await fetch(
+        'http://localhost:8080/luminal-systems/backend/contact.php',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(form),
+        }
+      )
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitted(true)
+        setForm({ name: '', email: '', subject: '', message: '' })
+      } else {
+        alert('Something went wrong: ' + result.message)
+      }
+    } catch (error) {
+      alert('Could not connect to server. Make sure XAMPP Apache is running!')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
     <div className="bg-[#0A0F2C] text-white">
 
-      {/* HERO SECTION */}
+      {/* ── HERO ── */}
       <section className="min-h-[50vh] flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 relative overflow-hidden">
-
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
-
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -137,7 +141,7 @@ function Contact() {
         </motion.div>
       </section>
 
-      {/* FORM + INFO SECTION */}
+      {/* ── FORM + INFO ── */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
 
@@ -151,7 +155,6 @@ function Contact() {
           >
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
 
-            {/* Success Message */}
             {submitted && (
               <div className="bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 rounded-xl px-5 py-4 mb-6 text-sm font-medium">
                 ✅ Your message has been sent! We will get back to you within 24 hours.
@@ -160,7 +163,6 @@ function Contact() {
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
 
-              {/* Name */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">Full Name</label>
                 <input
@@ -173,12 +175,9 @@ function Contact() {
                     errors.name ? 'border-red-500' : 'border-white/10'
                   }`}
                 />
-                {errors.name && (
-                  <p className="text-red-400 text-xs mt-1">{errors.name}</p>
-                )}
+                {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
               </div>
 
-              {/* Email */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">Email Address</label>
                 <input
@@ -191,12 +190,9 @@ function Contact() {
                     errors.email ? 'border-red-500' : 'border-white/10'
                   }`}
                 />
-                {errors.email && (
-                  <p className="text-red-400 text-xs mt-1">{errors.email}</p>
-                )}
+                {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
               </div>
 
-              {/* Subject */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">Subject</label>
                 <input
@@ -209,12 +205,9 @@ function Contact() {
                     errors.subject ? 'border-red-500' : 'border-white/10'
                   }`}
                 />
-                {errors.subject && (
-                  <p className="text-red-400 text-xs mt-1">{errors.subject}</p>
-                )}
+                {errors.subject && <p className="text-red-400 text-xs mt-1">{errors.subject}</p>}
               </div>
 
-              {/* Message */}
               <div>
                 <label className="text-sm text-gray-400 mb-1 block">Message</label>
                 <textarea
@@ -227,23 +220,25 @@ function Contact() {
                     errors.message ? 'border-red-500' : 'border-white/10'
                   }`}
                 />
-                {errors.message && (
-                  <p className="text-red-400 text-xs mt-1">{errors.message}</p>
-                )}
+                {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
               </div>
 
-              {/* Submit */}
+              {/* updated submit button */}
               <button
                 type="submit"
-                className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-full flex items-center justify-center gap-2 transition-all duration-200 mt-2"
+                disabled={submitting}
+                className="bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 text-white font-semibold py-3 rounded-full flex items-center justify-center gap-2 transition-all duration-200 mt-2"
               >
-                Send Message <ArrowRight size={18} />
+                {submitting
+                  ? 'Sending...'
+                  : <> Send Message <ArrowRight size={18} /> </>
+                }
               </button>
 
             </form>
           </motion.div>
 
-          {/* Contact Info + Map*/}
+          {/* Contact Info + Map */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -251,7 +246,6 @@ function Contact() {
             viewport={{ once: true }}
             className="flex flex-col gap-6"
           >
-            {/* Contact Info Cards */}
             {contactInfo.map((info) => (
               <div
                 key={info.label}
@@ -261,15 +255,12 @@ function Contact() {
                   {info.icon}
                 </div>
                 <div>
-                  <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">
-                    {info.label}
-                  </p>
+                  <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">{info.label}</p>
                   <p className="text-white text-sm font-medium">{info.value}</p>
                 </div>
               </div>
             ))}
 
-            {/* Map Placeholder */}
             <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl overflow-hidden flex-1 min-h-[200px] relative">
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
                 <MapPin size={36} className="text-indigo-400 mb-3" />
@@ -281,42 +272,25 @@ function Contact() {
                   rel="noopener noreferrer"
                   className="mt-4 text-cyan-400 text-xs font-semibold hover:underline"
                 >
-                  Open in google maps →
+                  Open in Google Maps →
                 </a>
               </div>
-
-              {/* Decorative grid lines */}
-              <svg
-                className="w-full h-full opacity-10"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg className="w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <pattern
-                    id="grid"
-                    width="30"
-                    height="30"
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <path
-                      d="M 30 0 L 0 0 0 30"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="0.5"
-                    />
+                  <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" strokeWidth="0.5" />
                   </pattern>
                 </defs>
                 <rect width="100%" height="100%" fill="url(#grid)" />
               </svg>
             </div>
-
           </motion.div>
         </div>
       </section>
 
-      {/*  FAQ SECTION  */}
+      {/* faq */}
       <section className="py-24 px-6 bg-white/5">
         <div className="max-w-3xl mx-auto">
-
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -348,11 +322,8 @@ function Contact() {
                   <span className="font-medium text-sm">{faq.question}</span>
                   <span className={`text-cyan-400 text-xl font-bold transition-transform duration-300 ${
                     openFaq === index ? 'rotate-45' : ''
-                  }`}>
-                    +
-                  </span>
+                  }`}>+</span>
                 </button>
-
                 {openFaq === index && (
                   <div className="px-6 pb-5 text-gray-400 text-sm leading-relaxed border-t border-white/10 pt-4">
                     {faq.answer}

@@ -16,7 +16,7 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
 
-  // Detect scroll to add background blur effect
+  // detect scroll to add background blur effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
@@ -25,7 +25,7 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close mobile menu when route changes
+  // close mobile menu when route changes
   useEffect(() => {
     setMenuOpen(false)
   }, [location])

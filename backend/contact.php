@@ -1,8 +1,19 @@
 <?php
-header("Access-Control-Allow-Origin: http://localhost:5173");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
+
+$allowedOrigins = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+];
+
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins, true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+    header('Access-Control-Allow-Credentials: true');
+}
+
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -40,16 +51,23 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $mail = new PHPMailer(true);
 
 try {
-    // ── Mailtrap SMTP Settings ──────────────────────
     $mail->isSMTP();
     $mail->Host       = 'sandbox.smtp.mailtrap.io';
     $mail->SMTPAuth   = true;
-    $mail->Username   = '3fe73c22268cd6'; 
-    $mail->Password   = '****9c84';  
-    $mail->SMTPSecure = 'tls';
-    $mail->Port       = 2525;
+    $mail->AuthType   = 'LOGIN';
+    $mail->Username   = '3fe73c22268cd6';     
+    $mail->Password   = 'd468a63d0b9c84'; 
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
 
-    // ── Email Details ───────────────────────────────
+    $mail->SMTPOptions = [
+        'ssl' => [
+            'verify_peer'       => false,
+            'verify_peer_name'  => false,
+            'allow_self_signed' => true,
+        ],
+    ];
+
     $mail->setFrom('hello@luminalsystems.com', 'Luminal Systems');
     $mail->addAddress('hello@luminalsystems.com', 'Luminal Team');
     $mail->addReplyTo($email, $name);

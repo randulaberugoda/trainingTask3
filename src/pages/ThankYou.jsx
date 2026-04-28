@@ -2,7 +2,7 @@ import { useLocation, Link } from 'react-router-dom'
 import { CheckCircle2, ArrowRight, Mail, LayoutDashboard, Home } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-// ANIMATION 
+// animation
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -18,12 +18,12 @@ const scaleIn = {
   },
 }
 
-//  COMPONENT 
+// component
 
 function ThankYou() {
   const location = useLocation()
 
-  //  Receive data from Checkout page
+  // receive data from checkout page
   const order = location.state || {
     orderId: 'LMS-2025-00000',
     planName: 'Pro',
@@ -55,16 +55,16 @@ function ThankYou() {
   return (
     <div className="bg-[#0A0F2C] text-white min-h-screen">
 
-      {/* HERO SUCCESS SECTION */}
+      {/* hero success section */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 relative overflow-hidden">
 
-        {/* Background glow */}
+        {/* background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl w-full">
 
-          {/* Animated Check Icon  */}
+          {/* animated check icon */}
           <motion.div
             variants={scaleIn}
             initial="hidden"
@@ -76,7 +76,7 @@ function ThankYou() {
             </div>
           </motion.div>
 
-          {/*  Success Message  */}
+          {/* success message */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -101,7 +101,7 @@ function ThankYou() {
             </p>
           </motion.div>
 
-          {/*Order Details Card  */}
+          {/* order details card */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -112,7 +112,7 @@ function ThankYou() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-              {/* Order ID */}
+              {/* order id */}
               <div className="bg-white/5 rounded-xl p-4">
                 <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">
                   Order ID
@@ -120,7 +120,7 @@ function ThankYou() {
                 <p className="text-white font-mono font-bold">{order.orderId}</p>
               </div>
 
-              {/* Plan */}
+              {/* plan */}
               <div className="bg-white/5 rounded-xl p-4">
                 <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">
                   Plan
@@ -128,7 +128,7 @@ function ThankYou() {
                 <p className="text-white font-bold">{order.planName} Plan</p>
               </div>
 
-              {/* Billing */}
+              {/* billing */}
               <div className="bg-white/5 rounded-xl p-4">
                 <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">
                   Billing Cycle
@@ -136,7 +136,7 @@ function ThankYou() {
                 <p className="text-white font-bold capitalize">{order.billing}</p>
               </div>
 
-              {/* Amount */}
+              {/* amount */}
               <div className="bg-white/5 rounded-xl p-4">
                 <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">
                   Amount Paid
@@ -146,7 +146,7 @@ function ThankYou() {
 
             </div>
 
-            {/* Account Created Banner */}
+            {/* account created banner */}
             {order.accountCreated && (
               <motion.div
                 variants={fadeUp}
@@ -167,7 +167,7 @@ function ThankYou() {
             )}
           </motion.div>
 
-          {/* Next Steps  */}
+          {/* next steps */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -182,12 +182,12 @@ function ThankYou() {
                   key={step.title}
                   className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 text-center hover:border-cyan-400/40 transition-all duration-300"
                 >
-                  {/* Step Number */}
+                  {/* step number */}
                   <span className="text-xs font-bold text-indigo-400 tracking-widest uppercase mb-3 block">
                     Step {index + 1}
                   </span>
 
-                  {/* Icon */}
+                  {/* icon */}
                   <div className="w-12 h-12 rounded-full bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center mx-auto mb-4">
                     {step.icon}
                   </div>
@@ -199,7 +199,7 @@ function ThankYou() {
             </div>
           </motion.div>
 
-          {/* CTA Buttons  */}
+          {/* cta buttons */}
           <motion.div
             variants={fadeUp}
             initial="hidden"

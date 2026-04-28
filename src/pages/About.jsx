@@ -88,14 +88,14 @@ const team = [
   },
 ]
 
-// ANIMATION 
+// animation
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 }
 
-// COMPONENT
+// component
 
 function About() {
   return (
@@ -273,7 +273,7 @@ function About() {
                 <h3 className="text-lg font-semibold">{member.name}</h3>
                 <p className="text-gray-400 text-sm mt-1 mb-4">{member.role}</p>
 
-                {/* Social Icons */}
+                {/* social icons */}
                 <div className="flex justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <button className="text-gray-400 hover:text-cyan-400 transition-colors">
                     <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-current text-[10px] font-semibold uppercase">
