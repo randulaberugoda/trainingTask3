@@ -1,10 +1,13 @@
 <?php
+require __DIR__ . '/env.php';
+
 header("Content-Type: application/json");
 
-$allowedOrigins = [
+$allowedOrigins = array_filter([
+    getenv('FRONTEND_ORIGIN') ?: '',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
-];
+]);
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if (in_array($origin, $allowedOrigins, true)) {
@@ -52,13 +55,18 @@ $mail = new PHPMailer(true);
 
 try {
     $mail->isSMTP();
-    $mail->Host       = 'sandbox.smtp.mailtrap.io';
+    $mail->Host       = getenv('SMTP_HOST') ?: '';
     $mail->SMTPAuth   = true;
-    $mail->AuthType   = 'LOGIN';
-    $mail->Username   = '3fe73c22268cd6';     
-    $mail->Password   = 'd468a63d0b9c84'; 
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
+    $mail->AuthType   = getenv('SMTP_AUTH') ?: 'LOGIN';
+    $mail->Username   = getenv('SMTP_USERNAME') ?: '';
+    $mail->Password   = getenv('SMTP_PASSWORD') ?: '';
+    $mail->SMTPSecure = getenv('SMTP_SECURE') ?: PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = (int)(getenv('SMTP_PORT') ?: 587);
+
+    if (!$mail->Host || !$mail->Username || !$mail->Password) {
+        echo json_encode(['success' => false, 'message' => 'Missing SMTP configuration.']);
+        exit();
+    }
 
     $mail->SMTPOptions = [
         'ssl' => [

@@ -2,8 +2,15 @@
 // PayHere will call this URL after payment
 // For sandbox testing just log the notification
 
-$merchantId     = '1235468';     
-$merchantSecret = 'MzMxNTk5Nzc4MDMxMjI5MDAzNjkzNjMyNjk2NjYxNjM2Mzk0NDY4'; 
+require __DIR__ . '/env.php';
+
+$merchantId     = getenv('PAYHERE_MERCHANT_ID') ?: '';
+$merchantSecret = getenv('PAYHERE_MERCHANT_SECRET') ?: '';
+
+if (!$merchantId || !$merchantSecret) {
+    http_response_code(500);
+    exit();
+}
 
 $orderId       = $_POST['order_id']       ?? '';
 $payhereAmount = $_POST['payhere_amount'] ?? '';

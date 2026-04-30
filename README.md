@@ -1,16 +1,27 @@
-# React + Vite
+# Luminal Systems
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React + Vite frontend with a PHP backend for PayHere payments and contact email delivery.
 
-Currently, two official plugins are available:
+## Run Locally
+1) Install frontend dependencies:
+	- `npm install`
+2) Create the frontend env file:
+	- Copy `.env.example` to `.env` and fill the values.
+3) Set up the PHP backend:
+	- Copy `backend/.env.example` to `backend/.env` and fill the values.
+	- Make sure your PHP server (XAMPP, etc.) can serve the `backend/` folder.
+4) Start the frontend dev server:
+	- `npm run dev`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Frontend runs at `http://localhost:5173` by default.
 
-## React Compiler
+## Environment Files
+- `.env` is for the React/Vite app.
+- `backend/.env` is for PHP (PayHere credentials + SMTP settings).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Do not commit real secrets. Keep both `.env` files private.
 
-## Expanding the ESLint configuration
+## Database
+This project does not use a database right now. No database setup is required.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+If you add one later, document the connection string and migration steps here.

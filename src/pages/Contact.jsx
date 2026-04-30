@@ -45,6 +45,8 @@ function Contact() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false) // ← NEW
 
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -90,7 +92,7 @@ function Contact() {
 
     try {
       const response = await fetch(
-        'http://localhost:8080/luminal-systems/backend/contact.php',
+        `${apiBaseUrl}/contact.php`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -107,7 +109,7 @@ function Contact() {
         alert('Something went wrong: ' + result.message)
       }
     } catch (error) {
-      alert('Could not connect to server. Make sure XAMPP Apache is running!')
+      alert('Could not connect to the server. Please try again in a moment.')
     } finally {
       setSubmitting(false)
     }

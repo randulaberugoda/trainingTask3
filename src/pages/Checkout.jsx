@@ -12,6 +12,10 @@ function Checkout() {
   const location = useLocation()
   const navigate = useNavigate()
 
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+  const publicUrl = import.meta.env.VITE_PUBLIC_URL || window.location.origin
+  const payhereSandbox = import.meta.env.VITE_PAYHERE_SANDBOX === 'true'
+
   const plan = location.state || {
     planName: 'Pro',
     price: 79,
@@ -74,7 +78,7 @@ function Checkout() {
     try {
       // Step 1 — Get hash from PHP backend
       const res = await fetch(
-        'http://localhost:8080/luminal-systems/backend/payhere.php',
+        `${apiBaseUrl}/payhere.php`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -95,11 +99,11 @@ function Checkout() {
 
       // Step 2 — Build PayHere payment object
       var payment = {
-        sandbox:     true,
+        sandbox:     payhereSandbox,
         merchant_id: data.merchantId,
-        return_url:  'http://localhost:5173/thank-you',
-        cancel_url:  'http://localhost:5173/checkout',
-        notify_url:  'http://localhost:8080/luminal-systems/backend/notify.php',
+        return_url:  `${publicUrl}/thank-you`,
+        cancel_url:  `${publicUrl}/checkout`,
+        notify_url:  `${apiBaseUrl}/notify.php`,
 
         order_id:    data.orderId,
         items:       plan.planName + ' Plan',
@@ -135,7 +139,7 @@ function Checkout() {
       window.payhere.startPayment(payment)
 
     } catch (error) {
-      alert('Could not connect to server. Make sure XAMPP is running!')
+      alert('Could not connect to the server. Please try again in a moment.')
       setLoading(false)
     }
   }

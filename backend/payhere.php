@@ -1,5 +1,8 @@
 <?php
-header("Access-Control-Allow-Origin: http://localhost:5173");
+require __DIR__ . '/env.php';
+
+$frontendOrigin = getenv('FRONTEND_ORIGIN') ?: 'http://localhost:5173';
+header("Access-Control-Allow-Origin: $frontendOrigin");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
@@ -15,8 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // ── Your PayHere Sandbox Credentials ──
-$merchantId     = '1235468';     
-$merchantSecret = 'MzMxNTk5Nzc4MDMxMjI5MDAzNjkzNjMyNjk2NjYxNjM2Mzk0NDY4'; 
+$merchantId     = getenv('PAYHERE_MERCHANT_ID') ?: '';
+$merchantSecret = getenv('PAYHERE_MERCHANT_SECRET') ?: '';
+
+if (!$merchantId || !$merchantSecret) {
+    echo json_encode(['success' => false, 'message' => 'Missing PayHere credentials.']);
+    exit();
+}
 
 // ── Get data from React ──
 $raw  = file_get_contents('php://input');
