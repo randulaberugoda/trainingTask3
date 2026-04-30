@@ -54,7 +54,7 @@ function Checkout() {
     return newErrors
   }
 
-  // ── Handle PayHere Payment ──
+  //  Handle PayHere Payment
   const handlePayment = async (e) => {
     e.preventDefault()
     const validationErrors = validate()
@@ -117,7 +117,7 @@ function Checkout() {
       }
 
       // Step 3 — Store order info for Thank You page
-      sessionStorage.setItem('luminal_order', JSON.stringify({
+      const orderPayload = {
         orderId:        data.orderId,
         planName:       plan.planName,
         price:          plan.price,
@@ -125,7 +125,11 @@ function Checkout() {
         customerName:   form.fullName,
         email:          form.email,
         accountCreated: createAccount,
-      }))
+        password:       createAccount ? password : null,
+      }
+
+      sessionStorage.setItem('luminal_order', JSON.stringify(orderPayload))
+      localStorage.setItem('luminal_order', JSON.stringify(orderPayload))
 
       // Step 4 — Open PayHere payment popup
       window.payhere.startPayment(payment)
@@ -136,10 +140,20 @@ function Checkout() {
     }
   }
 
-  // ── PayHere Event Handlers ──
+  //  PayHere Event Handlers 
   if (typeof window !== 'undefined' && window.payhere) {
     window.payhere.onCompleted = function(orderId) {
-      const orderData = JSON.parse(sessionStorage.getItem('luminal_order') || '{}')
+      let orderData = {}
+      try {
+        orderData = JSON.parse(
+          sessionStorage.getItem('luminal_order') ||
+          localStorage.getItem('luminal_order') ||
+          '{}'
+        )
+      } catch (error) {
+        console.error('Could not read order data:', error)
+      }
+
       navigate('/thank-you', { state: orderData })
     }
 
@@ -157,7 +171,7 @@ function Checkout() {
   return (
     <div className="bg-[#0A0F2C] text-white min-h-screen">
 
-      {/* ── HEADER ── */}
+      {/*  HEADER  */}
       <div className="pt-28 pb-12 text-center px-6">
         <motion.div variants={fadeUp} initial="hidden" animate="visible">
           <span className="inline-block bg-indigo-600/30 border border-indigo-500/40 text-indigo-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-4 tracking-wider uppercase">
@@ -170,11 +184,11 @@ function Checkout() {
         </motion.div>
       </div>
 
-      {/* ── MAIN LAYOUT ── */}
+      {/*  MAIN LAYOUT  */}
       <section className="pb-24 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
 
-          {/* ── Billing Form ── */}
+          {/*  Billing Form  */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -324,7 +338,7 @@ function Checkout() {
             </form>
           </motion.div>
 
-          {/* ── Order Summary ── */}
+          {/*  Order Summary  */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
